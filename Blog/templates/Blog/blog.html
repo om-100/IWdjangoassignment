@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-primary text-white">
+    <div class="container">
+        <h1 class="display-4">Blog Page</h1>
+        <p class="lead">This page contains all the blogs.</p>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'homepage' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blog</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<div class="container">
+    {% for x in blog_list %}
+    <div class="card w-50">
+        <div class="card-body">
+            <h5 class="card-title">{{x.Title}}</h5>
+            <p>Author: {{x.author.name}} <br>Created at: {{x.created_at}}<br> Modified At: {{x.modified_at}}</p>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="{% url 'deleteblog' x.id %}" class="btn btn-outline-danger px-4 ">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
